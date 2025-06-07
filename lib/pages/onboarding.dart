@@ -32,7 +32,7 @@ class _OnBoardingState extends State<OnBoarding> {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    const Color.fromARGB(255, 46, 45, 45),
+                    const Color.fromARGB(254, 46, 45, 45),
                     const Color.fromARGB(255, 33, 59, 52),
                   ],
                   begin: Alignment.topLeft,
