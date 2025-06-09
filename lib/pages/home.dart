@@ -54,49 +54,150 @@ class _HomeState extends State<Home> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            Row(
-              children: [
-                Container(
-                  padding: EdgeInsets.all(8),
-
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(15),
+            Container(
+              height: MediaQuery.of(context).size.height / 2.45,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(bottom: 6),
+                    child: Material(
+                      elevation: 3.0,
+                      borderRadius: BorderRadius.circular(8),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(6.0),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(25),
+                                child: Image.asset(
+                                  'images/sample.jpg',
+                                  width:
+                                      MediaQuery.of(context).size.width / 1.85,
+                                  fit: BoxFit.cover,
+                                  height: 120,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width / 1.85,
+                              child: Text(
+                                textAlign: TextAlign.center,
+                                'This is my first News App! Do you know?',
+                                style: GoogleFonts.openSans(
+                                    fontSize: 16, fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            SizedBox(height: 5),
+                            Container(
+                              width: MediaQuery.of(context).size.width / 1.85,
+                              child: Text(
+                                'This will be the subtext of the news',
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w100,
+                                ),
+                              ),
+                            ),
+                            Spacer(),
+                            Container(
+                              width: 74,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                color: Colors.blue,
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(15),
+                                ),
+                              ),
+                              margin: EdgeInsets.only(left: 120),
+                              child: Icon(
+                                Icons.arrow_forward,
+                                color: Colors.white,
+                                size: 26,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
                   ),
-                  child: Column(
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(25),
-                        child: Image.asset(
-                          'images/sample.jpg',
-                          width: MediaQuery.of(context).size.width / 1.8,
-                          fit: BoxFit.cover,
-                          height: 120,
-                        ),
-                      ),
-
-                      Container(
-                        width: MediaQuery.of(context).size.width / 1.8,
-                        child: Text(
-                          'This is my first News App! Do you know?',
-                          style: GoogleFonts.openSans(fontSize: 18),
-                        ),
-                      ),
-                      SizedBox(height: 5),
-                      Container(
-                        width: MediaQuery.of(context).size.width / 1.8,
-                        child: Text(
-                          'This will be the subtext of the news',
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w100,
-                          ),
-                        ),
-                      ),
-                    ],
+                  SizedBox(
+                    width: 8,
                   ),
-                ),
-              ],
+                  Container(
+                    margin: EdgeInsets.only(bottom: 6),
+                    child: Material(
+                      elevation: 3.0,
+                      borderRadius: BorderRadius.circular(8),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(6.0),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(25),
+                                child: Image.asset(
+                                  'images/sample.jpg',
+                                  width:
+                                      MediaQuery.of(context).size.width / 1.85,
+                                  fit: BoxFit.cover,
+                                  height: 120,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width / 1.85,
+                              child: Text(
+                                textAlign: TextAlign.center,
+                                'This is my first News App! Do you know?',
+                                style: GoogleFonts.openSans(
+                                    fontSize: 16, fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            SizedBox(height: 5),
+                            Container(
+                              width: MediaQuery.of(context).size.width / 1.85,
+                              child: Text(
+                                'This will be the subtext of the news',
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w100,
+                                ),
+                              ),
+                            ),
+                            Spacer(),
+                            Container(
+                              width: 74,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                color: Colors.blue,
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(15),
+                                ),
+                              ),
+                              margin: EdgeInsets.only(left: 120),
+                              child: Icon(
+                                Icons.arrow_forward,
+                                color: Colors.white,
+                                size: 26,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
           ],
         ),
