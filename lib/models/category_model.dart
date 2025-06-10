@@ -1,1 +1,4 @@
-Testing commits;
+class CategoryModel {
+  String? categoryName;
+  String? image;
+}
