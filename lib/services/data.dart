@@ -4,7 +4,7 @@ List<CategoryModel> getCategories() {
   List<CategoryModel> category = [];
   CategoryModel categoryModel = new CategoryModel();
 
-  categoryModel.categoryName = "Politics";
+  categoryModel.categoryName = "General";
   categoryModel.image = "images/Politics.jpeg";
   category.add(categoryModel);
   categoryModel = new CategoryModel();

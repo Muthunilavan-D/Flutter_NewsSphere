@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:news_app/models/article_model.dart';
 import 'package:news_app/models/category_model.dart';
+import 'package:news_app/pages/category_news.dart';
 import 'package:news_app/services/data.dart';
 import 'package:news_app/services/news.dart';
 
@@ -78,7 +79,7 @@ class _HomeState extends State<Home> {
                 itemBuilder: (context, index) {
                   return Container(
                     width: MediaQuery.of(context).size.width / 1.87,
-                    margin: EdgeInsets.only(bottom: 6,right: 8),
+                    margin: EdgeInsets.only(bottom: 6, right: 8),
                     child: Material(
                       elevation: 3.0,
                       borderRadius: BorderRadius.circular(8),
@@ -249,45 +250,52 @@ class CategoryTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(right: 18),
-      child: Stack(
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(30),
-            // ignore: deprecated_member_use
-            child: Image(
-              image: AssetImage(image),
+    return GestureDetector(
+      onTap: (){
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>CategoryNews(name:categoryname )));
+      },
+      child: Container(
+        margin: EdgeInsets.only(right: 18),
+        child: Stack(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(30),
+              // ignore: deprecated_member_use
+              child: Image(
+                image: AssetImage(image),
+                height: 140,
+                width: 140,
+                fit: BoxFit.cover,
+              ),
+            ),
+
+            Container(
               height: 140,
               width: 140,
-              fit: BoxFit.cover,
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(57, 0, 0, 0),
+                borderRadius: BorderRadius.circular(30),
+              ),
             ),
-          ),
-
-          Container(
-            height: 140,
-            width: 140,
-            decoration: BoxDecoration(
-              color: const Color.fromARGB(57, 0, 0, 0),
-              borderRadius: BorderRadius.circular(30),
-            ),
-          ),
-          Container(
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(30)),
-            height: 150,
-            width: 140,
-            child: Center(
-              child: Text(
-                categoryname,
-                style: TextStyle(
-                  color: const Color.fromARGB(255, 255, 255, 255),
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+              ),
+              height: 150,
+              width: 140,
+              child: Center(
+                child: Text(
+                  categoryname,
+                  style: TextStyle(
+                    color: const Color.fromARGB(255, 255, 255, 255),
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
