@@ -17,53 +17,88 @@ class _ArticleViewState extends State<ArticleView> {
   @override
   void initState() {
     super.initState();
-    _controller = WebViewController()
-      ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..setNavigationDelegate(
-        NavigationDelegate(
-          onPageFinished: (_) {
-            setState(() {
-              isLoading = false;
-            });
-          },
-        ),
-      )
-      ..loadRequest(Uri.parse(widget.blogUrl));
+    _controller =
+        WebViewController()
+          ..setJavaScriptMode(JavaScriptMode.unrestricted)
+          ..setNavigationDelegate(
+            NavigationDelegate(
+              onPageFinished: (_) {
+                setState(() {
+                  isLoading = false;
+                });
+              },
+            ),
+          )
+          ..loadRequest(Uri.parse(widget.blogUrl));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: IconButton(
+          icon: Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: Colors.grey[100],
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: const Icon(
+              Icons.arrow_back_ios_new_rounded,
+              color: Colors.blue,
+              size: 20,
+            ),
+          ),
+          onPressed: () => Navigator.pop(context),
+        ),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               'Newz',
-              style: GoogleFonts.timmana(
-                color: const Color.fromARGB(255, 109, 104, 104),
-                fontSize: 25,
+              style: GoogleFonts.poppins(
+                color: Colors.grey[800],
+                fontSize: 24,
+                fontWeight: FontWeight.w600,
               ),
             ),
             Text(
               'Sphere',
-              style: GoogleFonts.timmana(
-                color: const Color.fromARGB(255, 42, 205, 255),
-                fontSize: 25,
+              style: GoogleFonts.poppins(
+                color: Colors.blue,
+                fontSize: 24,
+                fontWeight: FontWeight.w600,
               ),
             ),
           ],
         ),
-        backgroundColor: Colors.white,
-        iconTheme: const IconThemeData(color: Colors.black),
-        elevation: 0.0,
         centerTitle: true,
       ),
       body: Stack(
         children: [
           WebViewWidget(controller: _controller),
           if (isLoading)
-            const Center(child: CircularProgressIndicator()),
+            Container(
+              color: Colors.white,
+              child: const Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+                    ),
+                    SizedBox(height: 16),
+                    Text(
+                      'Loading article...',
+                      style: TextStyle(color: Colors.blue, fontSize: 16),
+                    ),
+                  ],
+                ),
+              ),
+            ),
         ],
       ),
     );

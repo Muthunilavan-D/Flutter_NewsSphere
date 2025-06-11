@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:news_app/pages/home.dart';
 import 'package:typewritertext/typewritertext.dart';
 
 class OnBoarding extends StatefulWidget {
@@ -54,7 +55,7 @@ class _OnBoardingState extends State<OnBoarding> {
                       color: const Color.fromARGB(255, 255, 255, 255),
                       fontWeight: FontWeight.bold,
                     ),
-                    'Stay informed with NewsSphere',
+                    'Stay informed with NewzSphere',
                     duration: Duration(seconds: 2),
                   ),
                   // Text(
@@ -72,22 +73,31 @@ class _OnBoardingState extends State<OnBoarding> {
                     ),
                   ),
 
-                  Container(
-                    width: 200,
-                    height: 50,
-                    padding: EdgeInsets.all(5),
-                    margin: EdgeInsets.only(top: 4),
-                    decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(50),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Get Started',
-                        style: GoogleFonts.montserrat(
-                          fontSize: 18,
-                          color: const Color.fromARGB(255, 255, 255, 255),
-                          fontWeight: FontWeight.bold,
+                  GestureDetector(onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) =>Home(),
+          ),
+        );
+      },
+                    child: Container(
+                      width: 200,
+                      height: 50,
+                      padding: EdgeInsets.all(5),
+                      margin: EdgeInsets.only(top: 4),
+                      decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Start Exploring',
+                          style: GoogleFonts.montserrat(
+                            fontSize: 18,
+                            color: const Color.fromARGB(255, 255, 255, 255),
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
