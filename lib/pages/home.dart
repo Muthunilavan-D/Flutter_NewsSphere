@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:news_app/models/article_model.dart';
 import 'package:news_app/models/category_model.dart';
+import 'package:news_app/pages/article_view.dart';
 import 'package:news_app/pages/category_news.dart';
 import 'package:news_app/services/data.dart';
 import 'package:news_app/services/news.dart';
@@ -77,75 +78,90 @@ class _HomeState extends State<Home> {
                 scrollDirection: Axis.horizontal,
                 itemCount: articles.length,
                 itemBuilder: (context, index) {
-                  return Container(
-                    width: MediaQuery.of(context).size.width / 1.87,
-                    margin: EdgeInsets.only(bottom: 6, right: 8),
-                    child: Material(
-                      elevation: 3.0,
-                      borderRadius: BorderRadius.circular(8),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(8),
+                  print(articles[index].url);
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder:
+                              (context) =>
+                                  (ArticleView(blogUrl: articles[index].url!)),
                         ),
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(6.0),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(25),
-                                child: Image.network(
-                                  articles[index].urlToImage!,
-                                  width:
-                                      MediaQuery.of(context).size.width / 1.95,
-                                  fit: BoxFit.cover,
-                                  height: 105,
+                      );
+                    },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width / 1.87,
+                      margin: EdgeInsets.only(bottom: 6, right: 8),
+                      child: Material(
+                        elevation: 3.0,
+                        borderRadius: BorderRadius.circular(8),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(6.0),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(25),
+                                  child: Image.network(
+                                    articles[index].urlToImage!,
+                                    width:
+                                        MediaQuery.of(context).size.width /
+                                        1.95,
+                                    fit: BoxFit.cover,
+                                    height: 105,
+                                  ),
                                 ),
                               ),
-                            ),
-                            Container(
-                              width: MediaQuery.of(context).size.width / 1.915,
-                              child: Text(
-                                maxLines: 2,
-                                textAlign: TextAlign.center,
-                                articles[index].title!,
-                                style: GoogleFonts.openSans(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
+                              Container(
+                                width:
+                                    MediaQuery.of(context).size.width / 1.915,
+                                child: Text(
+                                  maxLines: 2,
+                                  textAlign: TextAlign.center,
+                                  articles[index].title!,
+                                  style: GoogleFonts.openSans(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
-                            ),
-                            SizedBox(height: 4),
-                            Container(
-                              padding: EdgeInsets.only(left: 4, right: 3),
-                              width: MediaQuery.of(context).size.width / 1.95,
-                              child: Text(
-                                maxLines: 2,
-                                articles[index].desc!,
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w100,
+                              SizedBox(height: 4),
+                              Container(
+                                padding: EdgeInsets.only(left: 4, right: 3),
+                                width: MediaQuery.of(context).size.width / 1.95,
+                                child: Text(
+                                  maxLines: 2,
+                                  articles[index].desc!,
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w100,
+                                  ),
                                 ),
                               ),
-                            ),
-                            Spacer(),
-                            Container(
-                              width: 74,
-                              height: 26,
-                              decoration: BoxDecoration(
-                                color: Colors.blue,
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(15),
+                              Spacer(),
+                              Container(
+                                width: 74,
+                                height: 26,
+                                decoration: BoxDecoration(
+                                  color: Colors.blue,
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(15),
+                                  ),
+                                ),
+                                margin: EdgeInsets.only(left: 120),
+                                child: Icon(
+                                  Icons.arrow_forward,
+                                  color: Colors.white,
+                                  size: 26,
                                 ),
                               ),
-                              margin: EdgeInsets.only(left: 120),
-                              child: Icon(
-                                Icons.arrow_forward,
-                                color: Colors.white,
-                                size: 26,
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -167,7 +183,7 @@ class _HomeState extends State<Home> {
               height: 100,
               child: ListView.builder(
                 shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
+                scrollDirection: Axis.vertical,
                 itemCount: categories.length,
                 itemBuilder: (context, index) {
                   return CategoryTile(
@@ -186,7 +202,82 @@ class _HomeState extends State<Home> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 4),
+            SizedBox(height: 4), 
+            Container(
+              height: MediaQuery.of(context).size.height / 2.65,
+              child: ListView.builder(
+                shrinkWrap: true,
+                physics: ClampingScrollPhysics(),
+                scrollDirection: Axis.horizontal,
+                itemCount: articles.length,
+                itemBuilder: (context, index) {
+                  print(articles[index].url);
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder:
+                              (context) =>
+                                  (ArticleView(blogUrl: articles[index].url!)),
+                        ),
+                      );
+                    },
+                    child:Container(
+              margin: EdgeInsets.only(right: 12),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+              ),
+              child: Row(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      bottomLeft: Radius.circular(10),
+                    ),
+                    child: Image.asset(
+                      'images/first.jpg',
+                      height: 90,
+                      width: 90,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  Column(
+                    children: [
+                      Container(
+                        width: MediaQuery.of(context).size.width / 1.75,
+                        child: Text(
+                          textAlign: TextAlign.center,
+                          'This is my first News App! Do you know?',
+                          style: GoogleFonts.openSans(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 4),
+                      Container(
+                        padding: EdgeInsets.only(left: 4, right: 3),
+                        width: MediaQuery.of(context).size.width / 1.6,
+                        child: Text(
+                          'This will be the subtext of the news',
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w100,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+                  );
+                },
+              ),
+            ),
+            
             Container(
               margin: EdgeInsets.only(right: 12),
               decoration: BoxDecoration(
@@ -251,8 +342,13 @@ class CategoryTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>CategoryNews(name:categoryname )));
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => CategoryNews(name: categoryname),
+          ),
+        );
       },
       child: Container(
         margin: EdgeInsets.only(right: 18),

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:news_app/models/show_category_model.dart';
+import 'package:news_app/pages/article_view.dart';
 import 'package:news_app/services/show_category_news.dart';
+import 'package:webview_flutter/webview_flutter.dart' ;
 
 class CategoryNews extends StatefulWidget {
   String name;
@@ -44,14 +46,22 @@ class _CategoryNewsState extends State<CategoryNews> {
               child: Row(
                 // mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  GestureDetector(onTap:(){Navigator.pop(context);} , child: Icon(Icons.arrow_back_ios_rounded, color: Colors.white)),
-                  
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Icon(
+                      Icons.arrow_back_ios_rounded,
+                      color: Colors.white,
+                    ),
+                  ),
+
                   Center(
                     child: Text(
                       widget.name,
                       style: TextStyle(
                         color: Colors.white,
-                        
+
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
                       ),
@@ -81,6 +91,7 @@ class _CategoryNewsState extends State<CategoryNews> {
                       title: categories[index].title,
                       image: categories[index].urlToImage,
                       desc: categories[index].desc,
+                      url: categories[index].url,
                     );
                   },
                 ),
@@ -94,39 +105,48 @@ class _CategoryNewsState extends State<CategoryNews> {
 }
 
 class CategoryTile extends StatelessWidget {
-  final image, title, desc;
-  const CategoryTile({this.image, this.title, this.desc, super.key});
+  final image, title, desc, url;
+  const CategoryTile({this.image, this.title, this.desc, this.url, super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(margin: EdgeInsets.only(left:10,right:10),
-      child: Column(
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadiusGeometry.circular(15),
-            child: Image.network(image),
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 8),
-            width: MediaQuery.of(context).size.width / .8,
-            child: Text(
-              title!,
-              style: GoogleFonts.openSans(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => (ArticleView(blogUrl: url))),
+        );
+      },
+      child: Container(
+        margin: EdgeInsets.only(left: 10, right: 10),
+        child: Column(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadiusGeometry.circular(15),
+              child: Image.network(image),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 8),
+              width: MediaQuery.of(context).size.width / .8,
+              child: Text(
+                title!,
+                style: GoogleFonts.openSans(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
-          ),
-          SizedBox(height: 10),
-          Container(
-            padding: EdgeInsets.only(left: 4, right: 3),
-            width: MediaQuery.of(context).size.width,
-            child: Text(
-              desc!,
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w100),
+            SizedBox(height: 10),
+            Container(
+              padding: EdgeInsets.only(left: 4, right: 3),
+              width: MediaQuery.of(context).size.width,
+              child: Text(
+                desc!,
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w100),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

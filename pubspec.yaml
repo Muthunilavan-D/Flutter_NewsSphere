@@ -37,6 +37,7 @@ dependencies:
   google_fonts: ^6.2.1
   typewritertext: ^3.0.9
   http: ^1.4.0
+  webview_flutter: ^4.13.0
 
 dev_dependencies:
   flutter_test:
