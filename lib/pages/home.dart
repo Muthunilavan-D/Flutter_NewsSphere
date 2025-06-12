@@ -37,6 +37,80 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(70),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: const BorderRadius.only(
+              bottomLeft: Radius.circular(24),
+              bottomRight: Radius.circular(24),
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.blue.withOpacity(0.08),
+                blurRadius: 16,
+                offset: const Offset(0, 6),
+              ),
+            ],
+          ),
+          child: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 38,
+                    height: 38,
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.circular(12),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.blue.withOpacity(0.18),
+                          blurRadius: 8,
+                          offset: const Offset(0, 2),
+                        ),
+                      ],
+                    ),
+                    child: const Icon(
+                      Icons.newspaper,
+                      color: Colors.white,
+                      size: 24,
+                    ),
+                  ),
+                  const SizedBox(width: 14),
+                  RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: 'Newz',
+                          style: GoogleFonts.poppins(
+                            color: Colors.grey[800],
+                            fontSize: 28,
+                            fontWeight: FontWeight.w700,
+                            letterSpacing: 1.2,
+                          ),
+                        ),
+                        TextSpan(
+                          text: 'Sphere',
+                          style: GoogleFonts.poppins(
+                            color: Colors.blue,
+                            fontSize: 28,
+                            fontWeight: FontWeight.w700,
+                            letterSpacing: 1.2,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
@@ -44,34 +118,28 @@ class _HomeState extends State<Home> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Newz',
-                      style: GoogleFonts.poppins(
-                        color: Colors.grey[800],
-                        fontSize: 28,
-                        fontWeight: FontWeight.w600,
+                Padding(
+                  padding: const EdgeInsets.only(top: 8, bottom: 4),
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 6,
+                        height: 28,
+                        decoration: BoxDecoration(
+                          color: Colors.blue,
+                          borderRadius: BorderRadius.circular(4),
+                        ),
                       ),
-                    ),
-                    Text(
-                      'Sphere',
-                      style: GoogleFonts.poppins(
-                        color: Colors.blue,
-                        fontSize: 28,
-                        fontWeight: FontWeight.w600,
+                      const SizedBox(width: 10),
+                      Text(
+                        'Hot News',
+                        style: GoogleFonts.poppins(
+                          color: Colors.grey[800],
+                          fontSize: 22,
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 24),
-                Text(
-                  'Hot News',
-                  style: GoogleFonts.poppins(
-                    color: Colors.grey[800],
-                    fontSize: 22,
-                    fontWeight: FontWeight.w600,
+                    ],
                   ),
                 ),
                 const SizedBox(height: 16),
@@ -97,95 +165,105 @@ class _HomeState extends State<Home> {
                         },
                         child: Container(
                           width: MediaQuery.of(context).size.width / 1.87,
-                          margin: const EdgeInsets.only(right: 16),
+                          margin: const EdgeInsets.only(right: 16, bottom: 8),
                           child: Card(
                             elevation: 4,
-                            shadowColor: Colors.blue.withOpacity(0.2),
+                            shadowColor: const Color.fromARGB(
+                              255,
+                              57,
+                              162,
+                              248,
+                            ).withOpacity(0.2),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(16),
                             ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                            child: Stack(
                               children: [
-                                ClipRRect(
-                                  borderRadius: const BorderRadius.vertical(
-                                    top: Radius.circular(16),
-                                  ),
-                                  child: Image.network(
-                                    articles[index].urlToImage!,
-                                    width: double.infinity,
-                                    height: 140,
-                                    fit: BoxFit.cover,
-                                    errorBuilder: (context, error, stackTrace) {
-                                      return Container(
-                                        height: 140,
-                                        color: Colors.grey[200],
-                                        child: const Icon(
-                                          Icons.error_outline,
-                                          size: 40,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(12),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        articles[index].title!,
-                                        maxLines: 2,
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w600,
-                                          height: 1.3,
-                                        ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    ClipRRect(
+                                      borderRadius: const BorderRadius.vertical(
+                                        top: Radius.circular(16),
                                       ),
-                                      const SizedBox(height: 8),
-                                      Text(
-                                        articles[index].desc!,
-                                        maxLines: 2,
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 13,
-                                          color: Colors.grey[600],
-                                          height: 1.4,
-                                        ),
+                                      child: Image.network(
+                                        articles[index].urlToImage!,
+                                        width: double.infinity,
+                                        height: 105,
+                                        fit: BoxFit.cover,
+                                        errorBuilder: (
+                                          context,
+                                          error,
+                                          stackTrace,
+                                        ) {
+                                          return Container(
+                                            height: 105,
+                                            color: const Color.fromARGB(
+                                              170,
+                                              238,
+                                              238,
+                                              238,
+                                            ),
+                                            child: const Icon(
+                                              Icons.error_outline,
+                                              size: 40,
+                                            ),
+                                          );
+                                        },
                                       ),
-                                    ],
-                                  ),
-                                ),
-                                const Spacer(),
-                                Container(
-                                  width: double.infinity,
-                                  padding: const EdgeInsets.symmetric(
-                                    vertical: 12,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: Colors.blue,
-                                    borderRadius: const BorderRadius.vertical(
-                                      bottom: Radius.circular(16),
                                     ),
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        'Read More',
-                                        style: GoogleFonts.poppins(
-                                          color: Colors.white,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w500,
+                                    Padding(
+                                      padding: const EdgeInsets.all(10),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            articles[index].title!,
+                                            maxLines: 3,
+                                            style: GoogleFonts.poppins(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w600,
+                                              height: 1.3,
+                                            ),
+                                          ),
+                                          const SizedBox(height: 6),
+                                          Text(
+                                            articles[index].desc!,
+                                            maxLines: 5,
+                                            style: GoogleFonts.poppins(
+                                              fontSize: 12,
+                                              color: Colors.grey[600],
+                                              height: 1.4,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Positioned(
+                                  bottom: 4,
+                                  right: 4,
+                                  child: Container(
+                                    width: 32,
+                                    height: 32,
+                                    decoration: BoxDecoration(
+                                      color: Colors.blue,
+                                      borderRadius: BorderRadius.circular(16),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.blue.withOpacity(0.15),
+                                          blurRadius: 6,
+                                          offset: const Offset(0, 2),
                                         ),
-                                      ),
-                                      const SizedBox(width: 8),
-                                      const Icon(
-                                        Icons.arrow_forward,
-                                        color: Colors.white,
-                                        size: 18,
-                                      ),
-                                    ],
+                                      ],
+                                    ),
+                                    child: const Icon(
+                                      Icons.arrow_forward,
+                                      color: Colors.white,
+                                      size: 18,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -197,12 +275,28 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 const SizedBox(height: 24),
-                Text(
-                  'Explore',
-                  style: GoogleFonts.poppins(
-                    color: Colors.grey[800],
-                    fontSize: 22,
-                    fontWeight: FontWeight.w600,
+                Padding(
+                  padding: const EdgeInsets.only(top: 24, bottom: 4),
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 6,
+                        height: 28,
+                        decoration: BoxDecoration(
+                          color: Colors.blue,
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      Text(
+                        'Explore',
+                        style: GoogleFonts.poppins(
+                          color: Colors.grey[800],
+                          fontSize: 22,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 const SizedBox(height: 16),
@@ -222,95 +316,119 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 const SizedBox(height: 24),
-                Text(
-                  'Trending News',
-                  style: GoogleFonts.poppins(
-                    color: Colors.grey[800],
-                    fontSize: 22,
-                    fontWeight: FontWeight.w600,
+                Padding(
+                  padding: const EdgeInsets.only(top: 24, bottom: 4),
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 6,
+                        height: 28,
+                        decoration: BoxDecoration(
+                          color: Colors.blue,
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      Text(
+                        'Trending News',
+                        style: GoogleFonts.poppins(
+                          color: Colors.grey[800],
+                          fontSize: 22,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 Container(
                   child: ListView.builder(
                     shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     scrollDirection: Axis.vertical,
                     itemCount: articles.length,
                     itemBuilder: (context, index) {
-                      print(articles[index].url);
                       return GestureDetector(
                         onTap: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder:
-                                  (context) => (ArticleView(
+                                  (context) => ArticleView(
                                     blogUrl: articles[index].url!,
-                                  )),
+                                  ),
                             ),
                           );
                         },
-                        child: SingleChildScrollView(
-                          child: Container(
-                            margin: EdgeInsets.only(right: 12, bottom: 5),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(10),
+                        child: Container(
+                          margin: const EdgeInsets.only(right: 12, bottom: 12),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.1),
+                                spreadRadius: 1,
+                                blurRadius: 5,
+                                offset: const Offset(0, 2),
                               ),
-                            ),
-                            child: Row(
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(10),
-                                    bottomLeft: Radius.circular(10),
-                                  ),
-                                  child: Image.network(
-                                    articles[index].urlToImage!,
-                                    height: 90,
-                                    width: 90,
-                                    fit: BoxFit.cover,
-                                  ),
+                            ],
+                          ),
+                          child: Row(
+                            children: [
+                              ClipRRect(
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(10),
+                                  bottomLeft: Radius.circular(10),
                                 ),
-                                Column(
-                                  children: [
-                                    Container(
-                                      width:
-                                          MediaQuery.of(context).size.width /
-                                          1.75,
-                                      child: Text(
-                                        maxLines: 2,
-                                        textAlign: TextAlign.center,
+                                child: Image.network(
+                                  articles[index].urlToImage!,
+                                  height: 90,
+                                  width: 90,
+                                  fit: BoxFit.cover,
+                                  errorBuilder: (context, error, stackTrace) {
+                                    return Container(
+                                      height: 90,
+                                      width: 90,
+                                      color: Colors.grey[200],
+                                      child: const Icon(
+                                        Icons.error_outline,
+                                        size: 30,
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
                                         articles[index].title!,
-                                        style: GoogleFonts.openSans(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(height: 4),
-                                    Container(
-                                      padding: EdgeInsets.only(
-                                        left: 4,
-                                        right: 3,
-                                      ),
-                                      width:
-                                          MediaQuery.of(context).size.width /
-                                          1.6,
-                                      child: Text(
                                         maxLines: 2,
-                                        articles[index].desc!,
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w100,
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 13,
+                                          fontWeight: FontWeight.w600,
+                                          height: 1.3,
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                      const SizedBox(height: 4),
+                                      Text(
+                                        articles[index].desc!,
+                                        maxLines: 2,
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 12,
+                                          color: Colors.grey[600],
+                                          height: 1.4,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
                       );

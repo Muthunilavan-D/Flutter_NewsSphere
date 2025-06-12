@@ -54,23 +54,39 @@ class _ArticleViewState extends State<ArticleView> {
           ),
           onPressed: () => Navigator.pop(context),
         ),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+        title: Stack(
+          alignment: Alignment.center,
           children: [
-            Text(
-              'Newz',
-              style: GoogleFonts.poppins(
-                color: Colors.grey[800],
-                fontSize: 24,
-                fontWeight: FontWeight.w600,
-              ),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  'Newz',
+                  style: GoogleFonts.poppins(
+                    color: Colors.grey[800],
+                    fontSize: 24,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                Text(
+                  'Sphere',
+                  style: GoogleFonts.poppins(
+                    color: Colors.blue,
+                    fontSize: 24,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
             ),
-            Text(
-              'Sphere',
-              style: GoogleFonts.poppins(
-                color: Colors.blue,
-                fontSize: 24,
-                fontWeight: FontWeight.w600,
+            // Invisible widget to balance the leading icon
+            Positioned(
+              right: 0,
+              child: Opacity(
+                opacity: 0,
+                child: Icon(
+                  Icons.arrow_back_ios_new_rounded,
+                  size: 20,
+                ),
               ),
             ),
           ],

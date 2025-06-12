@@ -15,94 +15,141 @@ class _OnBoardingState extends State<OnBoarding> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color(0xFF0F2027), Color(0xFF2C5364)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
         child: Stack(
           children: [
-            Image.asset(
-              'images/second.jpg',
-              height: MediaQuery.of(context).size.height / (1.7),
-              width: MediaQuery.of(context).size.width,
-              fit: BoxFit.cover,
+            // Animated background circles
+            Positioned(
+              top: -60,
+              left: -60,
+              child: AnimatedContainer(
+                duration: const Duration(seconds: 2),
+                width: 180,
+                height: 180,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.blue.withOpacity(0.18),
+                ),
+              ),
             ),
-            Container(
-              padding: EdgeInsets.all(6),
-              margin: EdgeInsets.only(
-                top: MediaQuery.of(context).size.height / 1.9,
-              ),
-
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    const Color.fromARGB(254, 46, 45, 45),
-                    const Color.fromARGB(255, 33, 59, 52),
-                  ],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30),
-                  topRight: Radius.circular(30),
+            Positioned(
+              bottom: 40,
+              right: -40,
+              child: AnimatedContainer(
+                duration: const Duration(seconds: 2),
+                width: 120,
+                height: 120,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.redAccent.withOpacity(0.13),
                 ),
               ),
-              child: Column(
-                children: [
-                  SizedBox(height: 16),
-                  TypeWriter.text(
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.playfair(
-                      fontSize: 23,
-                      color: const Color.fromARGB(255, 255, 255, 255),
-                      fontWeight: FontWeight.bold,
-                    ),
-                    'Stay informed with NewzSphere',
-                    duration: Duration(seconds: 2),
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                padding: const EdgeInsets.all(16),
+                margin: EdgeInsets.only(
+                  top: MediaQuery.of(context).size.height / 2.1,
+                ),
+                width: double.infinity,
+                decoration: const BoxDecoration(
+                  color: Color.fromARGB(220, 20, 24, 38),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30),
                   ),
-                  // Text(
-                  //   textAlign: TextAlign.center,
-                  //   ,
-                  //   style:
-                  // ),
-                  SizedBox(height: 6),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(30),
-                    child: Image.asset(
-                      'images/newspp.png',
-                      width: 120,
-                      height: 120,
-                    ),
-                  ),
-
-                  GestureDetector(onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) =>Home(),
-          ),
-        );
-      },
-                    child: Container(
-                      width: 200,
-                      height: 50,
-                      padding: EdgeInsets.all(5),
-                      margin: EdgeInsets.only(top: 4),
-                      decoration: BoxDecoration(
-                        color: Colors.blue,
-                        borderRadius: BorderRadius.circular(50),
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const SizedBox(height: 24),
+                    TypeWriter.text(
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.playfairDisplay(
+                        fontSize: 26,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 1.1,
                       ),
-                      child: Center(
-                        child: Text(
-                          'Start Exploring',
-                          style: GoogleFonts.montserrat(
-                            fontSize: 18,
-                            color: const Color.fromARGB(255, 255, 255, 255),
-                            fontWeight: FontWeight.bold,
+                      'Stay informed with',
+                      duration: const Duration(seconds: 1),
+                    ),
+                    const SizedBox(height: 18),
+                    Text(
+                      'NewzSphere',
+                      style: GoogleFonts.poppins(
+                        fontSize: 32,
+                        color: Colors.blueAccent,
+                        fontWeight: FontWeight.w800,
+                        letterSpacing: 1.2,
+                        shadows: [
+                          Shadow(
+                            color: Colors.blue.withOpacity(0.2),
+                            blurRadius: 8,
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      'WORLDWIDE NEWS',
+                      style: GoogleFonts.poppins(
+                        fontSize: 14,
+                        color: Colors.white70,
+                        fontWeight: FontWeight.w500,
+                        letterSpacing: 2.5,
+                      ),
+                    ),
+                    const SizedBox(height: 32),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const Home()),
+                        );
+                      },
+                      child: AnimatedContainer(
+                        duration: const Duration(milliseconds: 300),
+                        width: 200,
+                        height: 52,
+                        decoration: BoxDecoration(
+                          gradient: const LinearGradient(
+                            colors: [Color(0xFF36D1C4), Color(0xFF5B86E5)],
+                          ),
+                          borderRadius: BorderRadius.circular(50),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.blue.withOpacity(0.18),
+                              blurRadius: 12,
+                              offset: const Offset(0, 4),
+                            ),
+                          ],
+                        ),
+                        child: Center(
+                          child: Text(
+                            'Start Exploring',
+                            style: GoogleFonts.montserrat(
+                              fontSize: 19,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 1.1,
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                    const SizedBox(height: 18),
+                  ],
+                ),
               ),
             ),
           ],
