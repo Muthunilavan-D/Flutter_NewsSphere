@@ -3,7 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:news_app/models/show_category_model.dart';
 import 'package:news_app/pages/article_view.dart';
 import 'package:news_app/services/show_category_news.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 class CategoryNews extends StatefulWidget {
   String name;
