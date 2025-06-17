@@ -33,12 +33,3 @@
 *(You can add images here from the mobile version showing home, category selection, and article detail screens)*
 
 ---
-
-## 📦 Getting Started
-
-To run the app locally on your device:
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/Muthunilavan-D/NewzSphere.git
-   cd NewzSphere
