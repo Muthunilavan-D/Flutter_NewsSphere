@@ -1,16 +1,44 @@
-# news_app
+# 📰 NewzSphere – Flutter News App
 
-A new Flutter project.
+**NewzSphere** is a clean and modern Flutter application that delivers the latest news headlines using the **NewsAPI**. Designed with a smooth user interface and category-wise browsing, this app makes reading news intuitive and visually engaging.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 🚀 Features
 
-A few resources to get you started if this is your first Flutter project:
+- 🌍 **Top Headlines & Trending News**  
+  Get updated with the latest news from around the world in real-time.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- 📂 **News by Category**  
+  Easily browse through different categories like Technology, Business, Health, Entertainment, and more.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- 📱 **Mobile Optimized**  
+  Built for mobile platforms with smooth navigation and a responsive layout.
+
+- 🖼️ **Full Article View**  
+  Tap on any news card to read the full article in a clean and distraction-free format.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Flutter** – Cross-platform UI toolkit  
+- **Dart** – Programming language  
+- **NewsAPI** – For fetching real-time news articles
+
+---
+
+## 📸 Screenshots
+
+*(You can add images here from the mobile version showing home, category selection, and article detail screens)*
+
+---
+
+## 📦 Getting Started
+
+To run the app locally on your device:
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Muthunilavan-D/NewzSphere.git
+   cd NewzSphere
